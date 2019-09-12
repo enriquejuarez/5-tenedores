@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import t from 'tcomb-form-native'
 import { RegisterStruct, RegisterOptions } from '../../forms/Register'
-import { Button } from 'react-native-elements'
+import { Button, Text } from 'react-native-elements'
+import * as firebase from 'firebase'
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 const Form = t.form.Form
 
@@ -17,21 +19,41 @@ export default class Register extends Component{
                 email: '',
                 password: '',
                 passwordConfirmation: ''
-            }
+            },
+            formErrorMessage: ''
         }
     }
 
     register = () => {
+
         const { password, passwordConfirmation } = this.state.formData
+        console.log(this.state.formData)
         if (password === passwordConfirmation){
             const validate = this.refs.registerForm.getValue() //Realiza las validaciones del formulario
             if (validate){
-                console.log('formulario valido')
+                this.setState({
+                    formErrorMessage: ''
+                })
+                firebase.auth().createUserWithEmailAndPassword(validate.email, validate.password)
+                .then(resolve => {
+                    this.refs.toast.show('Registro correcto!', 300, () => {
+                        this.props.navigation.navigate('MyAccount')
+                        // this.props.navigation.goBack()
+                    });
+                    console.log('Registro correcto')
+                })
+                .catch(err => {
+                    console.log('Error en el registro')
+                })
             }else{
-                console.log('formulario no valido')
+                this.setState({
+                    formErrorMessage: 'Formulario inválido'
+                })
             }
         }else{
-            console.log('Las contraseñas no son iguales')
+            this.setState({
+                formErrorMessage: 'Las contraseñas no son iguales'
+            })
         }
         
     }
@@ -45,7 +67,7 @@ export default class Register extends Component{
     }
 
     render(){
-        const { registerStruct, registerOptions } = this.state
+        const { registerStruct, registerOptions, formErrorMessage } = this.state
 
         return(
             <View style={styles.body}>
@@ -57,8 +79,19 @@ export default class Register extends Component{
                     onChange= { (formValue) => this.onChangeFormRegister(formValue) }
                 />
                 <Button 
+                    buttonStyle={ styles.buttonRegisterContainer }
                     title='Unirse'
                     onPress={ () => this.register() }
+                />
+                <Text style={styles.formErrorMessage}>{formErrorMessage}</Text>
+                <Toast
+                    ref="toast"
+                    position='bottom'
+                    positionValue={250}
+                    fadeInDuration={1000}
+                    fadeOutDuration={1000}
+                    opacity={0.8}
+                    textStyle={{color:'#fff'}}
                 />
             </View>
         )
@@ -71,5 +104,16 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginLeft: 40,
       marginRight: 40
+    },
+    buttonRegisterContainer: {
+        backgroundColor: '#00a680',
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    formErrorMessage: {
+        color: '#f00',
+        textAlign: 'center',
+        marginTop: 30
     }
   });
