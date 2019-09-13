@@ -11,6 +11,7 @@ import TopFiveScreen from '../screens/TopFive'
 import MyAccountScreen from '../screens/MyAccount/MyAccount'
 import SearchScreen from '../screens/Search'
 import RegisterScreen from '../screens/MyAccount/Register'
+import LoginScreen from '../screens/MyAccount/Login'
 
 
 const homeScreenStack = createStackNavigator({
@@ -51,6 +52,12 @@ const myAccountScreenStack = createStackNavigator({
         screen: RegisterScreen,
         navigationOptions:({navigation}) => ({
             title: 'Registro'
+        })
+    },
+    Login: {
+        screen: LoginScreen,
+        navigationOptions:({navigation}) => ({
+            title: 'Login'
         })
     }
 })
