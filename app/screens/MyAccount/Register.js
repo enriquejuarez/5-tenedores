@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ActivityIndicator } from 'react-native'
 import t from 'tcomb-form-native'
 import { RegisterStruct, RegisterOptions } from '../../forms/Register'
-import { Button, Text } from 'react-native-elements'
+import { Button, Text, Image } from 'react-native-elements'
 import * as firebase from 'firebase'
 import Toast, { DURATION } from 'react-native-easy-toast'
 
@@ -71,6 +71,13 @@ export default class Register extends Component{
 
         return(
             <View style={styles.body}>
+                <Image
+                    source={require('../../../assets/img/5-tenedores-letras-icono-logo.png')}
+                    style={styles.logo}
+                    PlaceholderContent={<ActivityIndicator />}
+                    resizeMode='contain'
+                    containerStyle={ styles.containerLogo }
+                />
                 <Form 
                     ref='registerForm' 
                     type={ registerStruct } 
@@ -115,5 +122,13 @@ const styles = StyleSheet.create({
         color: '#f00',
         textAlign: 'center',
         marginTop: 30
+    },
+    containerLogo:{
+        alignItems: 'center',
+        marginBottom: 30
+    },
+    logo:{
+        width: 300,
+        height: 150,
     }
   });

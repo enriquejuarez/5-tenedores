@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native'
 import { Image, Button,  SocialIcon, Divider} from 'react-native-elements'
 import t from 'tcomb-form-native'
 import { LoginStruct, LoginOptions } from '../../forms/Login'
@@ -88,9 +88,9 @@ export default class Login extends Component{
 
     render(){
 
-
         const { loginStruct, loginOptions, loginErrorMessage } = this.state
         return(
+            <ScrollView>
             <View style={ styles.viewBody }>
                 <Image
                     source={require('../../../assets/img/5-tenedores-letras-icono-logo.png')}
@@ -112,6 +112,14 @@ export default class Login extends Component{
                     title='Login'
                     onPress={ () => this.login() }
                     />
+                    <Text style={ styles.textRegister }>
+                        ¿Aún no tienes una cuenta? <Text 
+                                                        style={ styles.btnRegister }
+                                                        onPress= { () => this.props.navigation.navigate('Register') }
+                                                    >
+                                                    Regístrate
+                                                    </Text>
+                    </Text>
                     <Text style={ styles.loginErrorMessage }>{ loginErrorMessage }</Text>
                     <Divider style={styles.divider} />
                     <SocialIcon 
@@ -119,6 +127,7 @@ export default class Login extends Component{
                         button
                         type='facebook'
                         onPress={ () => this.loginFacebook() }
+                        style={ styles.btnFacebook }
                     />
                 </View>
                 <Toast 
@@ -131,6 +140,7 @@ export default class Login extends Component{
                     textStyle={{ color: '#fff'}}
                 />
             </View>
+            </ScrollView>
         )
     }
 }
@@ -138,8 +148,8 @@ export default class Login extends Component{
 const styles = StyleSheet.create({
     viewBody: {
       flex: 1,
-      marginLeft: 40,
-      marginRight: 40,
+      marginLeft: 30,
+      marginRight: 30,
       marginTop: 40,
     },
     logo:{
@@ -161,11 +171,24 @@ const styles = StyleSheet.create({
     loginErrorMessage:{
         color: '#f00',
         textAlign: 'center',
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 20
 
     },
     divider: {
         backgroundColor: '#00a688',
         marginBottom: 20
+    },
+    textRegister: {
+        marginTop: 15,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    btnRegister: {
+        color: '#00a680',
+        fontWeight: 'bold'
+    },
+    btnFacebook: {
+        marginBottom: 40
     }
   });

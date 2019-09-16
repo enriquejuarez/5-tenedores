@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import * as firebase from 'firebase'
+import MyAccountGuest from '../../components/MyAccountGuest'
+import MyAccountUser from '../../components/MyAccountUser'
 
 export default class MyAccount extends Component{
 
@@ -38,27 +40,34 @@ export default class MyAccount extends Component{
 
         if (login) {
             return(
-                <View style={styles.body}>
-                    <Text>Estas logueado bien!!</Text>
-                    <Button 
-                        title='Cerrar sesión'
-                        onPress={() => this.logout()}
-                    />
-                </View>
+               
+                <MyAccountUser 
+                /> 
+                // <View style={styles.body}>
+                //     <Text>Estas logueado bien!!</Text>
+                //     <Button 
+                //         title='Cerrar sesión'
+                //         onPress={() => this.logout()}
+                //     />
+                // </View>
+            
             )
         }else{
             return(
-                <View style={styles.body}>
-                    <Text>MyAccount Screen</Text>
-                    <Button 
-                        title='Registro'
-                        onPress={() => this.goToScreen('Register')}
-                    />
-                    <Button 
-                        title='Login'
-                        onPress={() => this.goToScreen('Login')}
-                    />
-                </View>
+                <MyAccountGuest 
+                   goToScreen={ this.goToScreen } 
+                />
+                // <View style={styles.body}>
+                //     <Text>MyAccount Screen</Text>
+                //     <Button 
+                //         title='Registro'
+                //         onPress={() => this.goToScreen('Register')}
+                //     />
+                //     <Button 
+                //         title='Login'
+                //         onPress={() => this.goToScreen('Login')}
+                //     />
+                // </View>
             )
         }
         
