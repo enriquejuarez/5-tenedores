@@ -15,7 +15,7 @@ export default class MyAccountGuest extends Component{
         return(
             <View style={ styles.viewBody }>
                 <Image
-                    source={require("../../assets/img/image-my-account-guest-01.jpg")}
+                    source={require("../../../assets/img/image-my-account-guest-01.jpg")}
                     // style={ styles.image }
                     PlaceholderContent={ <ActivityIndicator />}
                     resizeMode='contain' 

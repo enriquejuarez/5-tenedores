@@ -789,9 +789,9 @@
   dependencies:
     "@firebase/app-types" "0.x"
 
-"@firebase/database@0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.5.2.tgz#9f480c64f7a16569ae8cf18ed82b22acf0ea0885"
+"@firebase/database@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.5.3.tgz#e731de97f2d12490df1614a86b993e9ab86ed7cb"
   dependencies:
     "@firebase/database-types" "0.4.3"
     "@firebase/logger" "0.1.24"
@@ -803,9 +803,9 @@
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-1.5.0.tgz#f05700220f882773ca01e818bf10b1dc456ee5be"
 
-"@firebase/firestore@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-1.5.1.tgz#b494662a68d208d678449460f73437a378fe6167"
+"@firebase/firestore@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-1.5.2.tgz#798c6ef541ee982d473d58d0df440bc0381c5f80"
   dependencies:
     "@firebase/firestore-types" "1.5.0"
     "@firebase/logger" "0.1.24"
@@ -2286,15 +2286,15 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-firebase@^6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-6.6.0.tgz#4890fa40ef4757dec9cb8524b17a0ed19ceb894e"
+firebase@^6.6.1:
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-6.6.1.tgz#758beaba5e1729062279b2b288969df2af6f94f8"
   dependencies:
     "@firebase/app" "0.4.16"
     "@firebase/app-types" "0.4.3"
     "@firebase/auth" "0.12.0"
-    "@firebase/database" "0.5.2"
-    "@firebase/firestore" "1.5.1"
+    "@firebase/database" "0.5.3"
+    "@firebase/firestore" "1.5.2"
     "@firebase/functions" "0.4.17"
     "@firebase/installations" "0.2.6"
     "@firebase/messaging" "0.4.10"
@@ -4847,6 +4847,14 @@ trim-right@^1.0.1:
 tslib@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
+
+tty-browserify@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.1.tgz#3f05251ee17904dfd0677546670db9651682b811"
+
+tty@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tty/-/tty-1.0.1.tgz#e4409ac98b0dd1c50b59ff38e86eac3f0764ee45"
 
 typedarray@^0.0.6:
   version "0.0.6"

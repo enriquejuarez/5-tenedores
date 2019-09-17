@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import * as firebase from 'firebase'
-import MyAccountGuest from '../../components/MyAccountGuest'
-import MyAccountUser from '../../components/MyAccountUser'
+import MyAccountGuest from '../../components/MyAccount/MyAccountGuest'
+import MyAccountUser from '../../components/MyAccount/MyAccountUser/index'
 
 export default class MyAccount extends Component{
 
