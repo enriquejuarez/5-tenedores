@@ -10,7 +10,7 @@ export default class OverlayOneInput extends Component{
     render(){
 
         return(
-            <Overlay isVisible={ true } overlayBackgroundColor='transparent' overlayStyle={ styles.overlayStyle }> 
+            <Overlay isVisible={ false } overlayBackgroundColor='transparent' overlayStyle={ styles.overlayStyle }> 
                 <View style={ styles.viewOverlay }>
                     <Input 
                         containerStyle={ styles.inputContainer } 

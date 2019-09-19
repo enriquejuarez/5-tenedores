@@ -5,9 +5,12 @@ import OverlayOneInput from '../../Elements/OverlayOneInput'
 
 
 export default class UpdateUserInfo extends Component{
-    constructor(){
-        super()
+    constructor(state){
+        super(state)
+        
         this.state ={
+            ...state,
+            overlayComponent: null,
             menuItems: [
                 {
                     title: 'Cambiar nombre y apellido',
@@ -44,6 +47,7 @@ export default class UpdateUserInfo extends Component{
                 }
             ]
         }
+        console.log(this.state.userInfo)
     }
     render(){
         const { menuItems } = this.state

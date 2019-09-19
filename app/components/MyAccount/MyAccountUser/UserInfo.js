@@ -9,9 +9,10 @@ export default class UserInfo extends Component{
         super(state)
         this.state={
             userInfo: {
-                displayName: '',
-                email: '',
-                photoUrl: ''
+                // displayName: '',
+                // email: '',
+                // photoUrl: '',
+                // uid: ''
             }
         }
     }
@@ -23,13 +24,14 @@ export default class UserInfo extends Component{
 
     getUserInfo = () => {
         const currentUser = firebase.auth().currentUser
-        const { displayName, email, photoURL } = currentUser
+        // const { displayName, email, photoURL, uid } = currentUser
 
         this.setState({
             userInfo: {
-                displayName,
-                email,
-                photoURL
+                displayName: currentUser.displayName,
+                email: currentUser.email,
+                photoURL: currentUser.photoURL,
+                uid: currentUser.uid
               }
         })
         // user.providerData.forEach( userInfo => {
@@ -40,6 +42,22 @@ export default class UserInfo extends Component{
     checkUserAvatar = (photoURL) => {
         return photoURL ? photoURL : 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
     } 
+
+    updateUserDisplayName = (newDisplayName) => {
+        console.log(newDisplayName)
+    }
+
+    returnUpdateUserInfoComponent = userInfoData => {
+        if (userInfoData.hasOwnProperty('uid')) {
+            return( <UpdateUserInfo 
+                        userInfo={ this.state.userInfo } 
+                        updateUserDisplayName={ this.updateUserDisplayName }
+                    />
+                    )
+        }
+        // console.log(userInfoData)
+    }
+
     render(){
         const { displayName, email, photoURL } = this.state.userInfo
 
@@ -58,7 +76,7 @@ export default class UserInfo extends Component{
                     <Text style={ styles.displayName }>{ displayName }</Text>
                     <Text>{ email }</Text>
                 </View>
-                <UpdateUserInfo />
+                {this.returnUpdateUserInfoComponent(this.state.userInfo)}
             </View>
         )
     }
