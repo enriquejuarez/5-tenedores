@@ -5,15 +5,11 @@ import * as firebase from 'firebase'
 import UpdateUserInfo from './UpdateUserInfo'
 
 export default class UserInfo extends Component{
-    constructor(state){
-        super(state)
+    constructor(props){
+        super(props)
         this.state={
-            userInfo: {
-                // displayName: '',
-                // email: '',
-                // photoUrl: '',
-                // uid: ''
-            }
+            ...props,
+            userInfo: {}
         }
     }
 
@@ -34,6 +30,7 @@ export default class UserInfo extends Component{
                 uid: currentUser.uid
               }
         })
+        // console.log(this.state)
         // user.providerData.forEach( userInfo => {
         //     console.log(userInfo)
         // })
@@ -43,12 +40,18 @@ export default class UserInfo extends Component{
         return photoURL ? photoURL : 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
     } 
 
-    updateUserDisplayName = (newDisplayName) => {
-        console.log(newDisplayName)
+    updateUserDisplayName = async (newDisplayName) => {
+        const update = {
+            displayName: newDisplayName
+        }
+
+        await firebase.auth().currentUser.updateProfile(update)
+        this.getUserInfo()
     }
 
     returnUpdateUserInfoComponent = userInfoData => {
         if (userInfoData.hasOwnProperty('uid')) {
+            console.log('Entra a esta funcion')
             return( <UpdateUserInfo 
                         userInfo={ this.state.userInfo } 
                         updateUserDisplayName={ this.updateUserDisplayName }
@@ -73,8 +76,10 @@ export default class UserInfo extends Component{
                         }}
                         containerStyles={ styles.userInfoAvatar }
                     />
-                    <Text style={ styles.displayName }>{ displayName }</Text>
-                    <Text>{ email }</Text>
+                    <View>
+                        <Text style={ styles.displayName }>{ displayName }</Text>
+                        <Text style={ styles.displayEmail }>{ email }</Text>
+                    </View>
                 </View>
                 {this.returnUpdateUserInfoComponent(this.state.userInfo)}
             </View>
@@ -96,7 +101,11 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     displayName: {
-        
+        paddingLeft: 25,
+        fontWeight: 'bold'
+    },
+    displayEmail: {
+        paddingLeft: 25
     }
     
   });

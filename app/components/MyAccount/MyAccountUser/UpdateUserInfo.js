@@ -5,11 +5,13 @@ import OverlayOneInput from '../../Elements/OverlayOneInput'
 
 
 export default class UpdateUserInfo extends Component{
-    constructor(state){
-        super(state)
-        
+
+    constructor(props){
+        super(props)
+        console.log('Entra al constructor')
+        console.log(props) 
         this.state ={
-            ...state,
+            ...props,
             overlayComponent: null,
             menuItems: [
                 {
@@ -20,7 +22,7 @@ export default class UpdateUserInfo extends Component{
                     iconNameLeft: 'account-circle',
                     iconColorLeft: '#ccc',
                     onPress: () => {
-                        console.log('Haz realizado clic en cambiar nombre y apellidos')
+                        this.openOverlay('Nombre y apellido', this.updateUserDisplayName, props.userInfo.displayName)
                     }
                 },
                 {
@@ -35,7 +37,7 @@ export default class UpdateUserInfo extends Component{
                     }
                 },
                 {
-                    title: 'Cambiar email',
+                    title: 'Cambiar contraseña',
                     iconType: 'material-community',
                     iconNameRight: 'chevron-right',
                     iconColorRight: '#ccc',
@@ -47,11 +49,35 @@ export default class UpdateUserInfo extends Component{
                 }
             ]
         }
-        console.log(this.state.userInfo)
     }
-    render(){
-        const { menuItems } = this.state
 
+    updateUserDisplayName = async (newDisplayName) => {
+
+        if (newDisplayName) {
+            this.state.updateUserDisplayName(newDisplayName)
+        }
+        this.setState({
+            overlayComponent: null
+        })
+    }
+
+    openOverlay = (placeholder, updateFunction, inputValue) => {
+        this.setState({
+            overlayComponent: (
+                    <OverlayOneInput 
+                        isVisibleOverlay={ true }
+                        placeholder={ placeholder }
+                        updateFunction= { updateFunction }
+                        inputValue={ inputValue }
+                    />
+                )
+        })
+        
+    }
+
+    render(){
+        const { menuItems, overlayComponent } = this.state
+        console.log('Render')
         return(
             <View style={ styles.viewUpdateUserInfo }>
                 {
@@ -66,7 +92,7 @@ export default class UpdateUserInfo extends Component{
                         />
                     ))
                 }
-                <OverlayOneInput />
+                { overlayComponent }
             </View>
         )
     }
