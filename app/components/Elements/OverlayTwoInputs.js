@@ -40,7 +40,7 @@ export default class OverlayTwoInputs extends Component{
     }
 
     render(){
-        const { isVisibleOverlay, placeholderOne, placeholderTwo, inputValueOne, inputValueTwo } = this.state
+        const { isVisibleOverlay, placeholderOne, placeholderTwo, inputValueOne, inputValueTwo, isPassword } = this.state
 
         return(
             <Overlay isVisible={ isVisibleOverlay } overlayBackgroundColor='transparent' overlayStyle={ styles.overlayStyle }> 
@@ -56,6 +56,8 @@ export default class OverlayTwoInputs extends Component{
                         placeholder={ placeholderTwo }
                         onChangeText={ value => this.onChangeInputTwo(value) }
                         value= { inputValueTwo }
+                        password= { isPassword }
+                        secureTextEntry= { isPassword }
                     />
                     <Button 
                         title='Actualizar'

@@ -96,6 +96,7 @@ export default class UpdateUserInfo extends Component{
                     placeholderTwo={ placeholderTwo }
                     inputValueOne={ inputValueOne }
                     inputValueTwo= ''
+                    isPassword={ true }
                     updateFunction= { updateFunction }
                 />
             )

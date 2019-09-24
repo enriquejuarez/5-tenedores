@@ -36,6 +36,16 @@ export default class UserInfo extends Component{
         // })
     }
 
+    reauthenticate = (currentPassword) => {
+        const user = firebase.auth().currentUser
+        const credentials = firebase.auth.EmailAuthProvider.credential(
+            user.email,
+            currentPassword
+        )
+
+        return user.reauthenticateWithCredential(credentials)
+    }
+
     checkUserAvatar = (photoURL) => {
         return photoURL ? photoURL : 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
     } 
